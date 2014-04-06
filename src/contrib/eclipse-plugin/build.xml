@@ -36,6 +36,12 @@
       <include name="com.jcraft.jsch*.jar"/>
     </fileset> 
   </path>
+	<path id="hadoop-lib-jars">
+		<fileset dir="${hadoop.root}">
+		<include name="hadoop*.jar"/>
+		</fileset>
+	</path>
+	<path refid="hadoop-lib-jars"></path>
 
   <!-- Override classpath to include Eclipse SDK jars -->
   <path id="classpath">
@@ -66,8 +72,13 @@
   <!-- Override jar target to specify manifest -->
   <target name="jar" depends="compile" unless="skip.contrib">
     <mkdir dir="${build.dir}/lib"/>
-    <copy file="${hadoop.root}/build/hadoop-core-${version}.jar" tofile="${build.dir}/lib/hadoop-core.jar" verbose="true"/>
-    <copy file="${hadoop.root}/build/ivy/lib/Hadoop/common/commons-cli-${commons-cli.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/hadoop-core-${version}.jar" tofile="${build.dir}/lib/hadoop-core.jar" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/commons-cli-{commonscli.version}.jar" todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/commons-configuration-1.6.jar" todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/commons-httpclient-3.0.1.jar" todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/commons-lang-2.4.jar" todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/jackson-core-asl-1.8.8.jar" todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.root}/lib/jackson-mapper-asl-1.8.8.jar" todir="${build.dir}/lib" verbose="true"/>
     <jar
       jarfile="${build.dir}/hadoop-${name}-${version}.jar"
       manifest="${root}/META-INF/MANIFEST.MF">

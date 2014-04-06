@@ -20,7 +20,10 @@
 <!-- Imported by contrib/*/build.xml files to share generic targets. -->
 
 <project name="hadoopbuildcontrib" xmlns:ivy="antlib:org.apache.ivy.ant">
-
+  <property name="version" value="1.2.1" />
+  <!-- This is Hadoop Version -->
+  <property name="eclipse.home" value="/Applications/eclipse"/>
+  <!-- This is eclipse folder path -->
   <property name="name" value="${ant.project.name}"/>
   <property name="root" value="${basedir}"/>
   <property name="hadoop.root" location="${root}/../../../"/>
@@ -47,7 +50,7 @@
   <!-- Property added for contrib system tests -->
   <available file="${src.test.system}" type="dir" 
       property="test.system.available"/>
- 
+  
   <property name="conf.dir" location="${hadoop.root}/conf"/>
   <property name="test.junit.output.format" value="plain"/>
   <property name="test.output" value="no"/>
